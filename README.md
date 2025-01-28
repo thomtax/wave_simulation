@@ -44,7 +44,7 @@ Assicurati di avere Python 3.6 o superiore installato sul tuo sistema.
 ### 2. **Clonare il Repository**
 
 ```bash
-git clone https://github.com/tuo-utente/wave_simulation.git
+git clone https://github.com/thomtax/wave_simulation.git
 cd wave_simulation
 ```
 
