@@ -13,6 +13,12 @@ def initialize_1d(params: Parameters1D):
     )
     u[1, :] = u[0, :]  # Zero initial velocity
 
+    # Applica condizioni al contorno iniziali fisse
+    u[0, 0] = 0
+    u[0, -1] = 0
+    u[1, 0] = 0
+    u[1, -1] = 0
+
     return x, t, u, dx, dt
 
 def initialize_1d_free(params: Parameters1D):
@@ -23,6 +29,12 @@ def initialize_1d_free(params: Parameters1D):
     # Initial condition: single Gaussian pulse at center
     u[0, :] = np.exp(-((x - params.L / 2) ** 2) / (2 * params.sigma ** 2))
     u[1, :] = u[0, :]  # Zero initial velocity
+
+    # Applica condizioni al contorno iniziali libere
+    u[0, 0] = u[0, 1]
+    u[0, -1] = u[0, -2]
+    u[1, 0] = u[1, 1]
+    u[1, -1] = u[1, -2]
 
     return x, t, u, dx, dt
 
@@ -36,5 +48,16 @@ def initialize_2d(params: Parameters2D):
     u0 = np.exp(-((X - params.Lx / 2) ** 2 + (Y - params.Ly / 2) ** 2) / (2 * sigma ** 2))
     u[0, :, :] = u0
     u[1, :, :] = u0  # Zero initial velocity
+
+
+    # Applica condizioni al contorno iniziali fisse
+    u[0, 0, :] = 0
+    u[0, -1, :] = 0
+    u[0, :, 0] = 0
+    u[0, :, -1] = 0
+    u[1, 0, :] = 0
+    u[1, -1, :] = 0
+    u[1, :, 0] = 0
+    u[1, :, -1] = 0
 
     return X, Y, t, u, dx, dy, dt
